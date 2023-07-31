@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AdminPermissionMapper">
+
+    <!--添加ms_admin_permission关联表-->
+    <insert id="insertByAdminPermissionList" parameterType="java.util.List">
+        Insert into ms_admin_permission (admin_id,permission_id) values
+        <!-- 注意foreach的语法,集合直接写list字符串，用item表示当前遍历的对象，结果集合通过使用逗号分隔使用separator属性 -->
+        <foreach collection="list" item="adminPermission" separator=",">
+            (#{adminPermission.adminId},#{adminPermission.permissionId})
+        </foreach>
+    </insert>
+</mapper>
